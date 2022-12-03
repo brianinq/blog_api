@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :username
       t.string :password_digest
       t.string :bio
-      t.integer :followers
+      t.integer :followers, default: 0
       t.string :avatar
 
       t.timestamps
