@@ -1,6 +1,7 @@
 class BlogsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
-    rescue_from ActiveRecord::RecorInvalid, with: :render_not_invalid
+    rescue_from ActiveRecord::RecordInvalid, with: :render_not_invalid
+    skip_before_action :authorized, only: [:index, :show]
     def index
         render json: Blog.all, status: :ok
     end
@@ -10,13 +11,18 @@ class BlogsController < ApplicationController
     end
     def show
         blog = find_blog
-        render json: CustomBlogSerializer.new(blog), status: :ok
+        blog.update(views: blog.views += 1)
+        render json: blog, serializer: CustomBlogSerializer, status: :ok
     end
     def update
-        
+        blog = find_blog
+        blog.update(likes: blog.likes +=1)
+        render json: blog, serializer: CustomBlogSerializer, status: :ok
     end
     def destroy
-        
+        blog = find_blog
+        blog.destroy
+        head :no_content
     end
 
     private
@@ -24,7 +30,7 @@ class BlogsController < ApplicationController
         Blog.find(params[:id])
     end
     def blog_params
-        params.permit(:title, :poster, :user_id, :category_id)
+        params.permit(:title, :poster, :body, :user_id, :category_id)
     end
     def render_not_found
         render json: {error: "Blog not found"}, status: :not_found
