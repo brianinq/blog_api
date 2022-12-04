@@ -11,9 +11,11 @@ class ApplicationController < ActionController::API
     def decode_token
         if auth_header
             token = auth_header.split(" ")[1]
-            JWT.decode(token, "Forgot to change secret", true )
-        rescue JWT::DecodeError
-            nil
+            begin
+                JWT.decode(token, "Forgot to change secret", true ) 
+            rescue JWT::DecodeError                
+                nil
+            end
         end
     end
     def current_user
@@ -24,10 +26,10 @@ class ApplicationController < ActionController::API
         end
         nil
     end
-    def logged_in
+    def logged_in?
         !!current_user
     end
     def authorized
-        render json: {"error": "Unauthorized"}, status: :unauthorized unless :logged_in
+        render json: {"error": "Unauthorized"}, status: :unauthorized unless logged_in?
     end
 end
