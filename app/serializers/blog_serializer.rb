@@ -1,3 +1,3 @@
 class BlogSerializer < ActiveModel::Serializer
-  attributes :id, :title, :poster, :likes, :views
+  attributes :id, :title, :poster, :likes, :views, :body
 end
