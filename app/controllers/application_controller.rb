@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+    wrap_parameters false
     before_action :authorized
     def encode_token(payload)
         JWT.encode(payload, "Forgot to change secret")
