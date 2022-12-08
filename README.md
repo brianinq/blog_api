@@ -2,10 +2,10 @@
 
 This is the blog app to be consumed by the react front end 
 
-## [Client Deployed here](https://blogfrontend-blush.vercel.app/)
+### [Client Deployed here](https://blogfrontend-blush.vercel.app/)
 
 
-## [Client Deployed here](https://blogapp-production-49a6.up.railway.app/)
+### [API Deployed here](https://blogapp-production-49a6.up.railway.app/)
 
 ## API Endpoints
 
