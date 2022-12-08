@@ -1,24 +1,43 @@
-# README
+# Rails Blog API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the blog app to be consumed by the react front end deployed [here]("")
 
-Things you may want to cover:
+## Tools
 
-* Ruby version
+- Ruby on Rails
+- Active Record
+- Postgresql
+- JWT authentication
 
-* System dependencies
+## Setup
 
-* Configuration
+- Ruby version 2.7.4
 
-* Database creation
+- System dependencies
 
-* Database initialization
+  postgress
+  bundler
 
-* How to run the test suite
+- Configuration
 
-* Services (job queues, cache servers, search engines, etc.)
+  Clone or download this repository locally
+  run the following commands to set up the app
 
-* Deployment instructions
+  ```bash
+    bundle install
+  ```
 
-* ...
+  Ensure postgress service is running
+
+  ```bash
+    rails db:create
+    rails db:migrate db:seed
+  ```
+
+  With all the requirements set up you can start the server to use the application
+
+  ```bash
+    rails s
+  ```
+
+  The app is also live [Here](https://blogapp-production-49a6.up.railway.app/)
